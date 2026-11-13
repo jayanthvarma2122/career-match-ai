@@ -1,213 +1,157 @@
 # 🚀 CareerMatch AI – Resume Analyzer & Job Matcher
 
-[![Built with React](https://img.shields.io/badge/Frontend-React%2018%20%7C%20Vite-61dafb.svg)](https://react.dev/)
-[![Styling with Tailwind](https://img.shields.io/badge/Styling-Tailwind%20CSS%203-38bdf8.svg)](https://tailwindcss.com/)
-[![Backend Node & Express](https://img.shields.io/badge/Backend-Node.js%20%7C%20Express-68a063.svg)](https://expressjs.com/)
-[![Database MongoDB](https://img.shields.io/badge/Database-MongoDB%20%7C%20Mongoose-47a248.svg)](https://www.mongodb.com/)
-[![AI Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285f4.svg)](https://aistudio.google.com/)
+[![Built with React](https://img.shields.io/badge/Frontend-React%2018%20%7C%20Vite-111111.svg?style=flat&logo=react)](https://react.dev/)
+[![Styling with Tailwind](https://img.shields.io/badge/Styling-Tailwind%20CSS-111111.svg?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
+[![Backend Node & Express](https://img.shields.io/badge/Backend-Node.js%20%7C%20Express-111111.svg?style=flat&logo=nodedotjs)](https://expressjs.com/)
+[![Database MongoDB](https://img.shields.io/badge/Database-MongoDB%20Atlas-111111.svg?style=flat&logo=mongodb)](https://www.mongodb.com/)
+[![AI Engine Gemini](https://img.shields.io/badge/AI-Google%20Gemini-111111.svg?style=flat&logo=google)](https://aistudio.google.com/)
 
-**CareerMatch AI** is a production-grade, full-stack AI career companion designed specifically for computer science engineering students and junior developers. It bridges the gap between academic projects and industry requirements by performing **11-point ATS readability audits**, **semantic job description matching**, and providing **24/7 AI career coaching**.
+**CareerMatch AI** is a modern, full-stack AI career platform designed to help engineering students and developers land tech internships. It performs in-memory **11-point ATS resume readability audits**, executes **semantic job description matching** against custom target companies, and provides real-time **AI career coaching** powered by Google Gemini.
 
-Developed as an elite portfolio project for 2nd-year B.Tech Computer Science internship applications.
-
----
-
-## 🌟 Key Features
-
-1. **📄 PDF Resume Parsing & In-Memory Extraction**:
-   - Accepts PDF resumes up to 5MB.
-   - Parses raw document buffers directly in-memory using `pdf-parse`, avoiding orphaned temporary files or disk latency.
-
-2. **🎯 11-Point ATS Resume Audit**:
-   - Overall Resume Score out of 100.
-   - Identified Strengths & Weaknesses.
-   - Categorized Technical vs. Soft Skills detection.
-   - High-demand Missing Skills gap detection.
-   - Education, Experience, and Project depth evaluations.
-   - ATS compatibility rules and structural improvement recommendations.
-
-3. **💼 Semantic Job Matcher**:
-   - Compare candidate resumes against actual tech internship job descriptions.
-   - 4-Tier objective rubric scoring: Skills (40%), Experience (30%), Education (15%), Keywords (15%).
-   - Actionable tailoring advice and keyword optimization.
-
-4. **🤖 24/7 AI Career Coach**:
-   - Interactive chatbot powered by Google Gemini.
-   - Specializes in STAR-method interview responses, DSA roadmaps, and project explanations.
-
-5. **📊 Visual Analytics Dashboard**:
-   - Recharts area graphs showing resume score progression across drafts.
-   - Skills distribution bar charts.
-   - Job match benchmark progress bars.
-
-6. **🛡️ Resilient Architecture (Recruiter Ready)**:
-   - Built-in **1-Click Instant Demo Login** for zero-friction evaluation.
-   - Graceful offline fallback: if MongoDB is disconnected or if the Gemini API key is unset, the app runs smoothly with local session storage without crashing.
+Designed with a minimal monochrome SaaS interface inspired by Linear and Vercel.
 
 ---
 
-## 🛠️ Technology Stack
+## ✨ Features
 
-| Layer | Technologies Used |
+- **📄 In-Memory PDF Parsing**: Parses raw document buffers directly in-memory using `pdf-parse` without disk overhead or storing temporary files.
+- **🎯 11-Point ATS Resume Audit**: Evaluates overall ATS compatibility score, identified strengths, critical skill gaps, and actionable formatting suggestions.
+- **💼 Semantic Job Matching**: Compares candidate resumes against target job descriptions and custom company profiles using a 4-tier weighted rubric (Skills, Projects, Education, Keywords).
+- **🤖 24/7 AI Career Assistant**: Interactive technical interview mentor specializing in the STAR method, system design fundamentals, and project deep-dives.
+- **📊 User-Scoped Analytics**: Clean Recharts graphs tracking authentic score progression, identified skills, and match history isolated per user.
+- **⚡ 1-Click Instant Demo Access**: Auto-provisions a pre-configured student profile with sample evaluations for instant reviewer evaluation.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
 | :--- | :--- |
-| **Frontend** | React 18, Vite, React Router v6, Tailwind CSS, Lucide React, Recharts, Canvas Confetti |
-| **Backend** | Node.js, Express.js (REST API architecture, ES Modules) |
-| **Database** | MongoDB Atlas / Local MongoDB, Mongoose ODM |
-| **AI Engine** | Google Gemini Generative AI SDK (`@google/generative-ai`) |
-| **Authentication** | JWT (JSON Web Tokens) with `bcryptjs` password hashing |
-| **File Processing** | Multer (Memory Storage) & `pdf-parse` |
+| **Frontend** | React 18, Vite, Tailwind CSS, Recharts, Lucide Icons, Canvas Confetti |
+| **Backend** | Node.js, Express.js (REST API, ES Modules) |
+| **Database** | MongoDB Atlas, Mongoose ODM |
+| **AI Model** | Google Gemini Generative AI SDK (`@google/generative-ai`) |
+| **Authentication** | JWT (JSON Web Tokens), `bcryptjs` password hashing |
+| **Deployment** | Vercel (Frontend SPA), Render (Backend Web Service) |
 
 ---
 
-## 📂 Project Architecture
+## 📂 Project Structure
 
-```
+```text
 career-match-ai/
 ├── backend/
-│   ├── config/
-│   │   └── db.js                 # MongoDB connection & offline fallback
-│   ├── controllers/
-│   │   ├── authController.js     # User registration, login, profile, demo access
-│   │   ├── resumeController.js   # PDF upload, extraction & Gemini analysis
-│   │   ├── jobController.js      # Semantic job description matcher
-│   │   ├── chatController.js     # AI career assistant coach
-│   │   └── dashboardController.js# Statistical aggregation for charts
-│   ├── middleware/
-│   │   ├── auth.js               # JWT verification
-│   │   └── upload.js             # Multer PDF filter & memory storage
-│   ├── models/
-│   │   ├── User.js               # User schema
-│   │   ├── Resume.js             # Resume audit results schema
-│   │   ├── JobAnalysis.js        # Job match schema
-│   │   └── Chat.js               # Chat history thread schema
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── resumeRoutes.js
-│   │   ├── jobRoutes.js
-│   │   ├── chatRoutes.js
-│   │   └── dashboardRoutes.js
-│   ├── services/
-│   │   ├── pdfService.js         # Buffer text extractor
-│   │   └── geminiService.js      # Structured Gemini prompts & model cascades
-│   ├── .env.example
+│   ├── config/              # Database connection & self-healing DNS resolver
+│   ├── controllers/         # Auth, Resume, Job Match, Chat, and Dashboard controllers
+│   ├── middleware/          # JWT authentication and Multer PDF buffer upload
+│   ├── models/              # Mongoose schemas (User, Resume, JobAnalysis, Chat)
+│   ├── routes/              # Express REST API routes
+│   ├── services/            # Gemini AI service and in-memory PDF parsing
+│   ├── .env.example         # Environment variables template
 │   ├── package.json
-│   └── server.js
+│   └── server.js            # Express server entry point
 │
 ├── frontend/
+│   ├── public/
 │   ├── src/
-│   │   ├── context/
-│   │   │   └── AuthContext.jsx   # Auth provider, theme toggle & demo login
-│   │   ├── layouts/
-│   │   │   └── DashboardLayout.jsx# Responsive sidebar, navbar & theme toggle
-│   │   ├── pages/
-│   │   │   ├── LandingPage.jsx   # Hero, features, social proof & CTAs
-│   │   │   ├── Login.jsx         # Sign in & 1-click demo access
-│   │   │   ├── Signup.jsx        # Student registration
-│   │   │   ├── Dashboard.jsx     # Recharts analytics & metrics
-│   │   │   ├── ResumeAnalyzer.jsx# 11-point PDF resume audit dashboard
-│   │   │   ├── JobMatcher.jsx    # Semantic job description comparison
-│   │   │   ├── CareerAssistant.jsx# AI mentor chat with suggestion chips
-│   │   │   ├── History.jsx       # Searchable analysis log & preview modal
-│   │   │   └── Profile.jsx       # Academic & technical profile settings
-│   │   ├── services/
-│   │   │   └── api.js            # Modular API client
-│   │   ├── App.jsx               # Protected routing
-│   │   ├── index.css             # Tailwind base & custom styles
-│   │   └── main.jsx
+│   │   ├── context/         # AuthContext (authentication & session management)
+│   │   ├── layouts/         # DashboardLayout (monochrome navigation & sidebar)
+│   │   ├── pages/           # Dashboard, Analyzer, Matcher, Assistant, History, Profile
+│   │   ├── services/        # Dynamic API client (supports local dev & production URLs)
+│   │   ├── App.jsx          # Protected client-side routes
+│   │   └── index.css        # Tailwind directives & typography styling
 │   ├── index.html
+│   ├── package.json
 │   ├── tailwind.config.js
-│   ├── vite.config.js
-│   └── package.json
+│   ├── vercel.json          # SPA rewrite rules for Vercel deployment
+│   └── vite.config.js
 │
-├── database/
-│   └── database_setup.md         # MongoDB Atlas step-by-step setup guide
-├── INTERVIEW_GUIDE.md            # Comprehensive interview defense & Q&A guide
-├── start-dev.bat                 # 1-Click Windows development launcher
+├── .gitignore               # Strict exclusion rules (keeps credentials protected)
 └── README.md
 ```
 
 ---
 
-## ⚡ Quick Start Guide
+## 🚀 Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- A free Google Gemini API Key from [Google AI Studio](https://aistudio.google.com/) (Optional, has offline fallback)
-- MongoDB Atlas account or local MongoDB (Optional, has in-memory fallback)
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) cluster (or local MongoDB)
+- [Google Gemini API Key](https://aistudio.google.com/)
 
-### Step 1: Clone or Navigate to Directory
+### 1. Clone the Repository
 ```bash
-cd "c:\Users\balaj\OneDrive\Desktop\resume projects(VIP)\career-match-ai"
+git clone https://github.com/jayanthvarma2122/career-match-ai.git
+cd career-match-ai
 ```
 
-### Step 2: Configure Backend Environment
-Navigate to `backend/` and inspect `.env`:
+### 2. Configure Backend
 ```bash
 cd backend
-copy .env.example .env
+npm install
 ```
-Fill in your credentials:
+
+Create a `.env` file in the `backend/` folder (or copy from `.env.example`):
 ```env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/careermatch_ai
-JWT_SECRET=careermatch_super_secret_jwt_key_2026_vip
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxx.mongodb.net/careermatch_ai?retryWrites=true&w=majority
+JWT_SECRET=your_jwt_secret_key_here
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-### Step 3: Run the Application
-
-#### Option A: Using 1-Click Launcher (Windows)
-Double-click `start-dev.bat` in the project root.
-
-#### Option B: Manual Command Line
-**Terminal 1 (Backend):**
+Start the backend:
 ```bash
-cd backend
-npm run dev
+npm start
 ```
+*The server will start at `http://localhost:5000`.*
 
-**Terminal 2 (Frontend):**
+### 3. Configure Frontend
+Open a new terminal:
 ```bash
 cd frontend
+npm install
 npm run dev
 ```
-
-Open your browser at **`http://localhost:5173`**.
+*The frontend will launch at `http://localhost:5173`.*
 
 ---
 
-## 📡 REST API Reference
+## 📡 API Reference
 
-| Method | Endpoint | Description | Protected |
+### Authentication
+| Method | Endpoint | Description | Auth Required |
 | :--- | :--- | :--- | :---: |
 | `POST` | `/api/auth/register` | Register new student profile | No |
-| `POST` | `/api/auth/login` | Authenticate user & return JWT | No |
-| `GET` | `/api/auth/profile` | Retrieve authenticated profile | Yes |
-| `PUT` | `/api/auth/profile` | Update profile information | Yes |
-| `POST` | `/api/resumes/upload` | Upload & extract text from PDF | Yes |
-| `POST` | `/api/resumes/analyze`| Run 11-point Gemini ATS evaluation | Yes |
-| `GET` | `/api/resumes` | Retrieve all past resume analyses | Yes |
-| `DELETE`| `/api/resumes/:id` | Delete resume analysis | Yes |
-| `POST` | `/api/jobs/analyze` | Perform semantic job match | Yes |
-| `GET` | `/api/jobs` | Retrieve job match history | Yes |
-| `DELETE`| `/api/jobs/:id` | Delete job match entry | Yes |
-| `POST` | `/api/chat/message` | Send message to AI Career Coach | Yes |
-| `GET` | `/api/chat/history` | Retrieve chat message history | Yes |
-| `DELETE`| `/api/chat/clear` | Clear chat history thread | Yes |
-| `GET` | `/api/dashboard/stats` | Retrieve aggregated charts & metrics | Yes |
-| `GET` | `/api/health` | Backend status & uptime health check | No |
+| `POST` | `/api/auth/login` | Sign in existing user | No |
+| `POST` | `/api/auth/demo` | 1-Click Instant Demo login | No |
+| `GET` | `/api/auth/profile` | Get current user profile | Yes |
+| `PUT` | `/api/auth/profile` | Update profile information & skills | Yes |
+
+### Resume Analysis
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :---: |
+| `POST` | `/api/resumes/upload` | Upload PDF and extract text buffer | Yes |
+| `POST` | `/api/resumes/analyze` | Execute 11-point ATS audit | Yes |
+| `GET` | `/api/resumes` | Fetch user's analyzed resumes | Yes |
+| `DELETE`| `/api/resumes/:id` | Delete resume record | Yes |
+
+### Job Matching & Coaching
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :---: |
+| `POST` | `/api/jobs/analyze` | Benchmark resume against target Job Description | Yes |
+| `GET` | `/api/jobs/history` | Fetch user's job match evaluations | Yes |
+| `POST` | `/api/chat` | Chat with AI Career Coach | Yes |
+| `GET` | `/api/dashboard/stats` | Aggregated dashboard analytics & charts | Yes |
+| `GET` | `/api/health` | Health & uptime verification | No |
 
 ---
 
-## 🎓 Why this Project Impresses Recruiters
+## 🌐 Deployment
 
-1. **Demonstrates Full-Stack Mastery**: End-to-end integration across React, Express, MongoDB, and modern AI SDKs.
-2. **Production-Ready Error Handling**: Handles corrupted PDFs, token expirations, AI model deprecation, and database connection timeouts gracefully.
-3. **Structured AI Integration**: Enforces deterministic, validated JSON schemas from LLM completions rather than unconstrained plaintext.
-4. **Accessible UI/UX**: Responsive modern SaaS aesthetics, dark/light themes, loading states, and smooth animations.
+- **Backend (Render)**: Deploy as a **Web Service** with Root Directory set to `backend`, Build Command `npm install`, and Start Command `node server.js`. Configure `MONGODB_URI`, `JWT_SECRET`, and `GEMINI_API_KEY` in Render environment variables.
+- **Frontend (Vercel)**: Import repository into Vercel with Root Directory set to `frontend`, Framework set to `Vite`, and set `VITE_API_URL=https://your-backend.onrender.com/api`.
 
 ---
 
 ## 📄 License
-Created for academic portfolio and internship demonstration purposes.
-
+This project is open-source and available under the [MIT License](LICENSE).
