@@ -39,3 +39,10 @@ Thumbs.db
 .idea/
 monochrome_theme_backup/
 
+# Internal guides & local dev scripts (keep on local machine only)
+INTERVIEW_GUIDE.md
+database/
+*.bat
+backend/.gitignore
+
+
